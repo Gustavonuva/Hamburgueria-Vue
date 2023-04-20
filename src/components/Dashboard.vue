@@ -29,11 +29,10 @@
           class="status"
           @change="updateBurger($event, burger.id)"
         >
-          <option value="">Selecione</option>
           <option
+            :value="s.tipo"
             v-for="s in status"
             :key="s.id"
-            :value="s.tipo"
             :selected="burger.status == s.tipo"
           >
             {{ s.tipo }}
@@ -65,7 +64,9 @@ export default {
   },
   methods: {
     async getPedidos() {
-      const req = await fetch("http://localhost:3000/burgers");
+      const req = await fetch(
+        "https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/burgers"
+      );
 
       const data = await req.json();
 
@@ -76,16 +77,21 @@ export default {
       this.getStatus();
     },
     async getStatus() {
-      const req = await fetch("http://localhost:3000/status");
+      const req = await fetch(
+        "https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/status"
+      );
 
       const data = await req.json();
 
       this.status = data;
     },
     async deleteBurger(id) {
-      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
-        method: "DELETE",
-      });
+      const req = await fetch(
+        `https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/burgers/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       const res = await req.json();
 
@@ -102,11 +108,14 @@ export default {
       const option = event.target.value;
       const dataJson = JSON.stringify({ status: option });
 
-      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
-      });
+      const req = await fetch(
+        `https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/burgers/${id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: dataJson,
+        }
+      );
       const res = await req.json();
 
       this.msg = `Pedido Nº ${res.id} foi atualizado para ${res.status}`;

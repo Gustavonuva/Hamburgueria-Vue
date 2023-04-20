@@ -78,7 +78,9 @@ export default {
   },
   methods: {
     async getIngredientes() {
-      const req = await fetch("http://localhost:3000/ingredientes");
+      const req = await fetch(
+        "http://https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/ingredientes"
+      );
       const data = await req.json();
 
       this.paes = data.paes;
@@ -95,11 +97,14 @@ export default {
         status: "Solicitado",
       };
       const dataJson = JSON.stringify(data);
-      const req = await fetch("http://localhost:3000/burgers", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: dataJson,
-      });
+      const req = await fetch(
+        "http://https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/burgers",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: dataJson,
+        }
+      );
       const res = await req.json();
 
       this.msg = `Pedido Nº ${res.id} realizado com sucesso`;
