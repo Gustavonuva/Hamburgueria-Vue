@@ -79,7 +79,7 @@ export default {
   methods: {
     async getIngredientes() {
       const req = await fetch(
-        "http://https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/ingredientes"
+        "https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/ingredientes"
       );
       const data = await req.json();
 
@@ -98,7 +98,7 @@ export default {
       };
       const dataJson = JSON.stringify(data);
       const req = await fetch(
-        "http://https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/burgers",
+        "https://my-json-server.typicode.com/Gustavonuva/json-hamburgueria/burgers",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
